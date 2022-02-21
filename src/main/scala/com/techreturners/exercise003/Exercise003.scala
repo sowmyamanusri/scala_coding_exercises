@@ -1,4 +1,6 @@
-ackage com.techreturners.exercise003
+package com.techreturners.exercise003
+
+import java.util
 
 
 class Exercise003 {
@@ -18,9 +20,16 @@ class Exercise003 {
 
 
   def iceCreamFlavours: Array[String] = {
-    throw new UnsupportedOperationException("You can delete this line and add your code here.")
- 
-
+    return myFlavours
   }
 
+  val myFlavours = Array("Pistachio",
+    "Raspberry Ripple",
+    "Vanilla",
+    "Mint Chocolate Chip",
+    "Chocolate",
+    "Mango Sorbet"
+  )
+
 }
+
