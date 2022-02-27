@@ -1,4 +1,5 @@
 package com.techreturners.exercise001
+import scala.language.postfixOps
 
 class Exercise001 {
 
@@ -8,39 +9,26 @@ class Exercise001 {
   // https://docs.scala-lang.org/tour/basics.html
 
   def capitalizeWord(word: String): String = {
-
-   word.toLowerCase.capitalize
-
+    word.toLowerCase.capitalize
   }
 
-  def generateInitials(firstName: String, lastName: String) = {
-
-    firstName.charAt(0).toString + "." + lastName.charAt(0).toString
-
+  def generateInitials(firstName: String, lastName: String): String = {
+    firstName.charAt(0).toString + '.' + lastName.charAt(0).toString
   }
 
-  def addVat(initialPrice: Double, interestRate: Double) : Double = {
-
+  def addVat(initialPrice: Double, interestRate: Double): Double = {
     if (interestRate == 0) return initialPrice
+    var vat: Double = (initialPrice * interestRate) / 100
+    var totalPrice = vat + initialPrice
 
-    var percentValue: Double = (initialPrice * interestRate) / 100
-
-    if ((percentValue - Math.floor(percentValue)) != 0) {
-
-      val totalPrice: Double = initialPrice + percentValue
-      return "%.2f".format(totalPrice).toDouble
-    }
-    else {
-      val totalPrice: Double = initialPrice + percentValue
-      return totalPrice
-    }
-
+    if ((vat - Math.floor(vat)) != 0) {
+      "%.2f".format(totalPrice).toDouble
+    } else
+      totalPrice
   }
 
-  def reverse(sentence: String) : String = {
-
-     sentence.reverse
-
+  def reverse(sentence: String): String = {
+    sentence.reverse
   }
 
   /**
@@ -51,17 +39,11 @@ class Exercise001 {
    * @return
    */
   def countLinuxUsers(users: Seq[User]): Int = {
+    if ((users == null) || (users.length == 0)) return 0
 
-   var count:Int =0
-    if((users == null) || (users.length == 0)) return 0
-
-    users.foreach(user => {
-      if (user == null) return  0
-      if (user.osType == "Linux") {
-        count = count + 1
-      }
+    val lnxCount = users.count(user => {
+      user.osType == "Linux"
     })
-    return  count;
+    return lnxCount
   }
-
 }
